@@ -81,8 +81,24 @@ class Compress
                 $averageColor += ($r + $g + $b) / 3;
 
                 // @TODO - A COMPLETER -- COULEUR DOMINANTE
+                $colors['red'] += $r;
+                $colors['green'] += $g;
+                $colors['blue'] += $b;
                 // fin @TODO
             }
+        }
+        $r = $colors["red"];
+        $g = $colors["green"];
+        $b = $colors["blue"];
+
+        if ($r > $g && $r > $b) {
+            $this->infos['strongcolor'] = 'ra';
+        } elseif ($g > $r && $g > $b) {
+            $this->infos['strongcolor'] = 'ki';
+        } elseif ($b > $g && $b > $g) {
+            $this->infos['strongcolor'] = 'ha';
+        } else {
+            $this->infos['strongcolor'] = 'vo';
         }
 
         // @TODO - A COMPLETER -- COULEUR DOMINANTE
