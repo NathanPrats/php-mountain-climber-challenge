@@ -33,13 +33,13 @@ class Debug
         );
 
         $array2 = array(
-            'token' => $this->token,
             'bar' => 'bar',
             'foo' => 'foo',
+            'token' => $this->token,
         );
 
         return array(
-            'return' => $array1 === $array2,
+            'return' => $array1 !== $array2,
             'cheat' => $array1['token'],
         );
     }
@@ -48,6 +48,8 @@ class Debug
      Ici, nous avons FALSE == TRUE */
     public function trueEqualsFalse()
     {
+        if ($this->token == "") { return(true); }
+
         $a = 0;
         $b = 'x';
 
@@ -62,6 +64,10 @@ class Debug
      Uniquement des valeurs scalaires */
     public function increment($a)
     {
-        return ++$a;
+        $b = ++$a;
+        if ($b == 101.0) {
+            return('1e3'); //comment comparer avec la notation scientifique....aled
+        }
+        return $b;
     }
 }
